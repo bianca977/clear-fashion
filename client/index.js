@@ -119,7 +119,16 @@ console.log(pricerange);
 // 1. Determine the average basket of the marketplace
 // 2. Log the average
 
+let averagebasket=0;
 
+marketplace.forEach(function(product){
+	averagebasket=averagebasket+product.price;
+
+})
+
+averagebasket=averagebasket/marketplace.length;
+
+console.log("the average basket of the marketplace is "+averagebasket+" euros");
 
 
 
