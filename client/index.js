@@ -188,8 +188,18 @@ console.log(keybrand);
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
 
+for (const [key, value] of Object.entries(keybrand)){
+	value.sort(function(a,b){
+		if(new Date(a.date)>new Date(b.date))
+			return 1;
+		if(new Date(a.date)<new Date(b.date))
+			return -1;
+		return 0;
+	});
+};
 
-
+console.log("for each brand the products are sorted by date");
+console.log(keybrand);
 
 
 /**
