@@ -35,8 +35,8 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 2. Log the variable
 
 
-
-
+const link='https://www.loom.fr/collections/tous-les-vetements/products/le-t-shirt';
+console.log(link);
 
 /**
  * 👕
