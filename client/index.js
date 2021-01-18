@@ -168,6 +168,21 @@ console.log(keybrand);
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
 
+for (const [key, value] of Object.entries(keybrand)){
+	value.sort(function(a,b){
+		if(a.price>b.price)
+			return -1;
+		if(a.price<b.price)
+			return 1;
+		return 0;
+	});
+};
+
+console.log("for each brand the products are sorted by price");
+console.log(keybrand);
+
+
+
 
 // 🎯 TODO: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
