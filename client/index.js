@@ -156,6 +156,14 @@ console.log("the average basket of the marketplace is "+averagebasket+" euros");
 // 3. Log the number of products by brands
 
 
+const keybrand={};
+
+marketplace.forEach(function(product){
+	keybrand[product.brand]=marketplace.filter(k=> k.brand == product.brand);
+});
+
+console.log(keybrand);
+
 // 🎯 TODO: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
