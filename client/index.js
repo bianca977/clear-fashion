@@ -60,6 +60,15 @@ console.log(numberProduct);
 // 2. Log the variable
 // 3. Log how many brands we have
 
+const brandsname=[];
+marketplace.forEach(function(product){
+if(brandsname.includes(product.brand)==false){
+	brandsname.push(product.brand);
+}
+});
+
+console.log(brandsname);
+console.log("we have "+brandsname.length+" differents brands.");
 
 // 🎯 TODO: Sort by price
 // 1. Create a function to sort the marketplace products by price
