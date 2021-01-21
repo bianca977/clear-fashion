@@ -357,10 +357,39 @@ else
 // 1. Find the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the product
 
+console.log("the following product has the uuid =`b56c6d88-749a-5b4c-b571-e5b5c6483131' ");
+ 
+
+COTELE_PARIS.forEach(function(product){
+	if (product.uuid== `b56c6d88-749a-5b4c-b571-e5b5c6483131`)
+		console.log(product);	
+})
+
+
 
 // 🎯 TODO: Delete a specific product
 // 1. Delete the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the new list of product
+
+let pos=0;
+
+
+console.table(COTELE_PARIS);
+
+
+for(let i=0;i<COTELE_PARIS.length;i++){
+  if(COTELE_PARIS[i].uuid==`b56c6d88-749a-5b4c-b571-e5b5c6483131`){
+    pos=i;
+  }
+}
+
+
+COTELE_PARIS.splice(pos,1);
+console.log("the new list of product is : ");
+console.table(COTELE_PARIS);
+
+
+
 
 // 🎯 TODO: Save the favorite product
 let blueJacket = {
