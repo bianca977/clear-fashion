@@ -443,3 +443,10 @@ console.log(jacket);
 // 🎯 TODO: Save in localStorage
 // 1. Save MY_FAVORITE_BRANDS in the localStorage
 // 2. log the localStorage
+localStorage.clear();
+
+MY_FAVORITE_BRANDS.forEach(function(product){
+  localStorage.setItem(product.name,product.url);
+});
+
+console.log(localStorage);
