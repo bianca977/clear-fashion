@@ -404,7 +404,15 @@ let jacket = blueJacket;
 jacket.favorite = true;
 
 // 1. Log `blueJacket` and `jacket` variables
+
+console.log(blueJacket);
+console.log(jacket);
+
 // 2. What do you notice?
+
+// the property 'favorite' has also been had to the blueJacket variable 
+
+
 
 blueJacket = {
   'link': 'https://coteleparis.com/collections/tous-les-produits-cotele/products/la-veste-bleu-roi',
@@ -414,7 +422,15 @@ blueJacket = {
 
 // 3. Update `jacket` property with `favorite` to true WITHOUT changing blueJacket properties
 
+jacket={
+  'link': 'https://coteleparis.com/collections/tous-les-produits-cotele/products/la-veste-bleu-roi',
+  'price': 110,
+  'uuid': 'b4b05398-fee0-4b31-90fe-a794d2ccfaaa',
+  'favorite':true
+};
 
+console.log(blueJacket);
+console.log(jacket);
 
 
 
