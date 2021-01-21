@@ -340,6 +340,19 @@ COTELE_PARIS.forEach(function(product){
 // // A reasonable price if all the products are less than 100€
 
 
+let priceok=0;
+
+COTELE_PARIS.forEach(function(product){
+	if (product.price< 100)
+		priceok=priceok+1;
+	
+})
+if (priceok==COTELE_PARIS.length)
+	console.log("Cotele Paris is a reasonable shop");
+else
+	console.log("Cotele Paris is not a reasonable shop because some article costs more than 100");
+
+
 // 🎯 TODO: Find a specific product
 // 1. Find the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the product
