@@ -8,24 +8,26 @@ const cheerio = require('cheerio');
  */
 const parse = data => {
   const $ = cheerio.load(data);
-/*
+
   let links=[];
 
   $('li.mainNavigation-link-subMenu-link.mainNavigation-link-subMenu-link--image').each((i,element)=>{
     if(i<14){
-      //links.push($(element).find('a').attr('href'));
+      links.push($(element).find('a').attr('href'));
+      console.log(links);
 
-      const link=$(element).find('a').attr('href');
-      links.push(link);
+      //const link=$(element).find('a').attr('href');
+      //links.push(link);
     }
     
+
     
 
     });
-    console.log(links);
+  
 
       
-*/
+/*
       return $('.productList-container .productList')
       .map((i, elem) => {
         const name = $(elem)
@@ -46,6 +48,7 @@ const parse = data => {
 
 
     }
+*/
 
     
     
