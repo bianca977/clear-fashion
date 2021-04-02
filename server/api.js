@@ -27,18 +27,20 @@ app.get('/', (request, response) => {
 });
 
 //endpoint pour ajouter des filtres 
-app.get('/products/search', async (request, response) => {
-
-  const limit= (request.params.limit)
-  const brand= (request.params.brand)
-  const price= (request.params.price)
-  let prod=[]
-  const product=await db.find({"brand":brand,"price":{"$lte":parseFloat(price)}})
-
-  for (i=0;i<limit;i++){
-  	prod.push(product[i])
+app.get('/products/search', async (req, res) => {
+  let limit = 12
+  if(req.query.limit){
+    limit = req.query.price;
   }
-  response.send(prod);
+  let prod = []
+  const result = await querydata({'brand':req.query.brand,'price':{"$lte": parseFloat(req.query.price)}})
+  for(i=0;i<limit;i++){
+    prod.push(result[i])
+  }
+prod.sort(function(a,b){
+  {return a.price - b.price}
+});
+res.send(prod);
 });
 
 //endpoint pour afficher un produit 
