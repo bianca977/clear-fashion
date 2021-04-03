@@ -56,7 +56,7 @@ async function dedicatedbrand_scrape(eshop, brand = 'DEDICATED'){
       products_dedicated = products_dedicated.concat(products)
     }
 
-    products_dedicated = removeDuplicateObjectFromArray(products_dedicated, 'name')
+    products_dedicated = removeDuplicate(products_dedicated, 'name')
     products_dedicated = products_dedicated.filter(item => (item.price > 0));
     console.log('Dedicated scrapping done');
     return products_dedicated;
@@ -96,7 +96,7 @@ async function mudjeans_scrape(eshop, brand = 'MUDJEANS'){
       //toJsonFile.productToJsonFile(products, brand);
     }
 
-    products_mudjeans = removeDuplicateObjectFromArray(products_mudjeans, 'name')
+    products_mudjeans = removeDuplicate(products_mudjeans, 'name')
     products_mudjeans = products_mudjeans.filter(item => (item.price > 0));
     console.log('Mudjeans scrapping done');
     return products_mudjeans;
@@ -116,7 +116,7 @@ async function loom_scrape(eshop, brand = 'LOOM'){
  
     
 
-    products_loom = removeDuplicateObjectFromArray(products_loom, 'name')
+    products_loom = removeDuplicate(products_loom, 'name')
     products_loom = products_loom.filter(item => (item.price > 0));
     console.log('Loom scrapping done');
     return products_loom;
@@ -126,7 +126,7 @@ async function loom_scrape(eshop, brand = 'LOOM'){
   }  
 }
 
-function removeDuplicateObjectFromArray(array, key) {
+function removeDuplicate(array, key) {
   var check = new Set();
   return array.filter(obj => !check.has(obj[key]) && check.add(obj[key]));
 }
