@@ -3,7 +3,7 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
-
+let reasonable_checkbox='off';
 
 
 // inititiqte selectors
@@ -16,7 +16,7 @@ const spanNbProducts = document.querySelector('#nbProducts');
 const p50=document.querySelector('#p50');
 const p90=document.querySelector('#p90');
 const p95=document.querySelector('#p95');
-
+const ReasonablePrice=document.querySelector("#reasonable-price");
 
 
 /**
@@ -158,13 +158,20 @@ function percentile(p){
 }
 
 const render = (products, pagination) => {
- 
+  products=filters(products);
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
   const brand=ListBrands(currentProducts);
   renderBrands(brand);
 };
+
+function filters(products){
+  if(reasonable_checkbox==='on'){
+    products=products.filter(p=>p.price<80);
+  }
+  return products
+}
 
 function sortbrand(products,brand){
   const sortedproduct=[];
@@ -202,10 +209,10 @@ function Selection(currentProducts,selectedSorting){
 //Function to make the comparation, they are going to be used into function for sorting
 function compare_date_asc(a,b){
   if (a.released < b.released){
-    return 1;
+    return -1;
   }
   else if (a.released > b.released) {
-    return -1;
+    return 1;
   }
   else {
     return 0;
@@ -214,10 +221,10 @@ function compare_date_asc(a,b){
 
 function compare_date_desc(a,b){
   if (a.released>b.released){
-    return 1;
+    return -1;
   }
   else if (a.released<b.released){
-    retunr -1;
+    retunr 1;
   }
   else {
     return 0;
@@ -337,6 +344,14 @@ selectSort.addEventListener('change',event => {
   
 });
 
+ReasonablePrice.addEventListener('change',()=>{
+  if(reasonable_checkbox==='on'){
+    reasonable_checkbox='off';
+  }else{
+    reasonable_checkbox='on';
+  }
+  render(currentProducts,currentPagination);
+})
 
 
 document.addEventListener('DOMContentLoaded',()=>
