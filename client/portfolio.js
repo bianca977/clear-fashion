@@ -155,6 +155,12 @@ const renderIndicators = pagination => { //nombre de produit affiché en fonctio
   p50.innerHTML=percentile(50)+ " euros";
   p90.innerHTML=percentile(90)+ " euros";
   p95.innerHTML=percentile(95)+ " euros";
+  if(reasonable_checkbox==='on'){
+    sortAffordable(products);
+  }
+  else if(recent_checkbox==='on'){
+    sortNewReleased(products);
+  }
 };
 
 function percentile(p){
@@ -168,10 +174,8 @@ const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
-  checkboxes(products);
   const brand=ListBrands(currentProducts);
   renderBrands(brand);
-  
 };
 
 function sortbrand(products,brand){
@@ -184,22 +188,13 @@ function sortbrand(products,brand){
   renderProducts(sortedproduct);
 }
 
-function checkboxes(products){
-  if(reasonable_checkbox==='on'){
-    sortAffordable(products);
-  }
-  else if(recent_checkbox==='on'){
-    sortNewReleased(products);
-  }
-}
-
 
 // function to select the way we want to sort the products before showing them to thz client 
 function Selection(currentProducts,selectedSorting){
-  if (selectedSorting == 'reasonable-price'){
+  if (selectedSorting == 'affordable'){
     sortAffordable(currentProducts);
   }
-  else if (selectedSorting == 'recently-released'){
+  else if (selectedSorting == 'new-release'){
     sortNewReleased(currentProducts);
   }
   else if (selectedSorting == 'price-asc'){
