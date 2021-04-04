@@ -350,6 +350,7 @@ ReasonablePrice.addEventListener('change',()=>{
   }else{
     reasonable_checkbox='on';
   }
+  render(currentProducts,currentPagination):
   
 })
 
@@ -359,6 +360,7 @@ RecentReleased.addEventListener('change',()=>{
   }else{
     recent_checkbox='on';
   }
+  render(currentProducts,currentPagination);
   
 })
 
