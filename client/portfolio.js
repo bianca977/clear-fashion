@@ -4,7 +4,8 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
-
+let reasonable_checkbox='off',
+let recent_checkbox='off';
 
 
 // inititiqte selectors
@@ -181,13 +182,22 @@ function sortbrand(products,brand){
   renderProducts(sortedproduct);
 }
 
+function checkboxes(products){
+  if(reasonable_checkbox==='on'){
+    sortAffordable(products);
+  }
+  else if(recent_checkbox==='on'){
+    sortNewReleased(products);
+  }
+}
+
 
 // function to select the way we want to sort the products before showing them to thz client 
 function Selection(currentProducts,selectedSorting){
-  if (selectedSorting == 'affordable'){
+  if (selectedSorting == 'reasonable-price'){
     sortAffordable(currentProducts);
   }
-  else if (selectedSorting == 'new-release'){
+  else if (selectedSorting == 'recently-released'){
     sortNewReleased(currentProducts);
   }
   else if (selectedSorting == 'price-asc'){
@@ -341,6 +351,24 @@ selectSort.addEventListener('change',event => {
   Selection(currentProducts,event.target.value);
   
 });
+
+ReasonablePrice.addEventListener('change',()=>{
+  if(reasonable_checkbox=='on'){
+    reasonable_checkbox='off':
+  }else{
+    reasonable_checkbox='on';
+  }
+  checkboxes(currentProducts);
+})
+
+RecentReleased.addEventListener('change',()=>{
+  if(recent_checkbox=='on'){
+    recent_checkbox='off':
+  }else{
+    recent_checkbox='on';
+  }
+  checkboxes(currentProducts);
+})
 
 
 
