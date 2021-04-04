@@ -4,6 +4,8 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
+let fav=[];
+let checkFav='off';
 
 
 
@@ -14,8 +16,13 @@ const selectBrand= document.querySelector('#brand-select');
 const selectSort=document.querySelector('#sort-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
- 
+const p50=document.querySelector('#p50');
+const p90=document.querySelector('#p90');
+const p95=document.querySelector('#p95');
 
+const ReasonablePrice=document.querySelector("#reasonable-price");
+const RecentReleased=document.querySelector('#recently-released');
+const Favorites=document.querySelector('#favorites');
 
 
 /**
@@ -67,6 +74,7 @@ const renderProducts = products => { //rend la liste des produits
         <span>${product.brand}</span>
         <a href="${product.link}">${product.name}</a>
         <span>${product.price}</span>
+        <button onclick="addto_favorites('${product.uuid}')" class="button">Add to favorites</button>
       </div>
     `;
     })
@@ -145,6 +153,9 @@ const renderIndicators = pagination => { //nombre de produit affiché en fonctio
   const {count} = pagination;
 
   spanNbProducts.innerHTML = count;
+  p50.innerHTML=percentile(50)+ " euros";
+  p90.innerHTML=percentile(90)+ " euros";
+  p95.innerHTML=percentile(95)+ " euros";
 };
 
 const render = (products, pagination) => {
@@ -155,6 +166,12 @@ const render = (products, pagination) => {
   const brand=ListBrands(currentProducts);
   renderBrands(brand);
 };
+
+function percentile(p){
+  var prod=currentProducts.sort((a,b)=>compare_price_asc(a,b));
+  var i=Math.floor((p/100)*prod.length)
+  return prod[i].price
+}
 
 function sortbrand(products,brand){
   const sortedproduct=[];
@@ -216,10 +233,10 @@ function compare_date_desc(a,b){
 
 function compare_price_asc(a,b){
   if (a.price < b.price){
-    return 1;
+    return -1;
   }
   else if (a.price > b.price){
-    return -1;
+    return 1;
   }
   else {
     return 0;
@@ -228,10 +245,10 @@ function compare_price_asc(a,b){
 
 function compare_price_desc(a,b){
   if (a.price > b.price){
-    return 1;
+    return -1;
   }
   else if (a.price < b.price){
-    return -1;
+    return 1;
   }
   else {
     return 0;
@@ -248,6 +265,33 @@ function is_newly_released(product){
   else {
     return false;
   }
+}
+
+function addto_favorites(id){
+  var sameid=0;
+  for(var i=0;i<fav.length;i++){
+    if(fav[i].uuid===id){
+      sameid=sameid+1;
+    }
+  }
+
+  id(sameid>=1){
+    for(var i=0; i<fav.length;i++){
+      if(fav[i].uuid != id){
+        fav.push(fav[i])
+      }
+    }
+  }
+  else{
+    for(var i=0;i<currentProducts.length;i++){
+      if(currentProducts[i].uuid===id){
+        fav.push(currentProducts[i])
+      }
+    }
+  }
+  localStorage.setItem('fav',JSON.stringify(fav));
+
+  render(currentProducts,currentPagination)
 }
 
 
@@ -327,7 +371,14 @@ selectSort.addEventListener('change',event => {
   
 });
 
-
+Favorites.addEventListener('change',()=>{
+  if(checkFav=='on'){
+    checkFav='off':
+  }else{
+    checkFav='on';
+  }
+  renderProducts(fav);
+})
 
 document.addEventListener('DOMContentLoaded',()=>
   fetchProducts().then(setCurrentProducts).then(()=>render(currentProducts,currentPagination))
