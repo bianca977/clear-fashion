@@ -158,7 +158,7 @@ function percentile(p){
 }
 
 const render = (products, pagination) => {
-  products=filters(products);
+
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
@@ -166,12 +166,7 @@ const render = (products, pagination) => {
   renderBrands(brand);
 };
 
-function filters(products){
-  if(reasonable_checkbox==='on'){
-    products=products.filter(p=>p.price<80);
-  }
-  return products
-}
+
 
 function sortbrand(products,brand){
   const sortedproduct=[];
@@ -344,14 +339,6 @@ selectSort.addEventListener('change',event => {
   
 });
 
-ReasonablePrice.addEventListener('change',()=>{
-  if(reasonable_checkbox==='on'){
-    reasonable_checkbox='off';
-  }else{
-    reasonable_checkbox='on';
-  }
-  render(currentProducts,currentPagination);
-})
 
 
 document.addEventListener('DOMContentLoaded',()=>
