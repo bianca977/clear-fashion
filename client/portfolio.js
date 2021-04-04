@@ -1,3 +1,4 @@
+// Invoking strict mode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
 
 // current products on the page
@@ -16,6 +17,10 @@ const spanNbProducts = document.querySelector('#nbProducts');
 const p50=document.querySelector('#p50');
 const p90=document.querySelector('#p90');
 const p95=document.querySelector('#p95');
+
+const ReasonablePrice=document.querySelector("#reasonable-price");
+const RecentReleased=document.querySelector('#recently-released');
+const Favoritess=document.querySelector('#favorites'); 
 
 
 
@@ -38,7 +43,7 @@ const setCurrentProducts = ({result, meta}) => {
 const fetchProducts = async (page = 1, size = 12) => {//recupere les produits 
   try {
     const response = await fetch(
-      `https://clear-fashion-server-six.vercel.app/products?page=${page}&size=${size}`
+      `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
     );
     const body = await response.json();
 
@@ -202,10 +207,10 @@ function Selection(currentProducts,selectedSorting){
 //Function to make the comparation, they are going to be used into function for sorting
 function compare_date_asc(a,b){
   if (a.released < b.released){
-    return -1;
+    return 1;
   }
   else if (a.released > b.released) {
-    return 1;
+    return -1;
   }
   else {
     return 0;
@@ -214,10 +219,10 @@ function compare_date_asc(a,b){
 
 function compare_date_desc(a,b){
   if (a.released>b.released){
-    return -1;
+    return 1;
   }
   else if (a.released<b.released){
-    retunr 1;
+    retunr -1;
   }
   else {
     return 0;
@@ -226,10 +231,10 @@ function compare_date_desc(a,b){
 
 function compare_price_asc(a,b){
   if (a.price < b.price){
-    return 1;
+    return -1;
   }
   else if (a.price > b.price){
-    return -1;
+    return 1;
   }
   else {
     return 0;
@@ -238,10 +243,10 @@ function compare_price_asc(a,b){
 
 function compare_price_desc(a,b){
   if (a.price > b.price){
-    return 1;
+    return -1;
   }
   else if (a.price < b.price){
-    return -1;
+    return 1;
   }
   else {
     return 0;
