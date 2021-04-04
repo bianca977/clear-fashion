@@ -159,7 +159,7 @@ const renderIndicators = pagination => { //nombre de produit affiché en fonctio
 };
 
 const render = (products, pagination) => {
- 
+  products=products_filter(products);
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
@@ -336,7 +336,13 @@ function sortNewReleased(currentProducts){
   sortbrand(newReleasedProducts,selectBrand.value);
 }
 
-
+function products_filter(products){
+  if(checkFav==='on'){
+    products=fav;
+  }
+  return products;
+}
+console.log(localStorage);
 
 /**
  * Declaration of all Listeners
