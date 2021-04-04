@@ -155,12 +155,7 @@ const renderIndicators = pagination => { //nombre de produit affiché en fonctio
   p50.innerHTML=percentile(50)+ " euros";
   p90.innerHTML=percentile(90)+ " euros";
   p95.innerHTML=percentile(95)+ " euros";
-  if(reasonable_checkbox==='on'){
-    sortAffordable(products);
-  }
-  else if(recent_checkbox==='on'){
-    sortNewReleased(products);
-  }
+
 };
 
 function percentile(p){
@@ -349,23 +344,6 @@ selectSort.addEventListener('change',event => {
   
 });
 
-ReasonablePrice.addEventListener('change',()=>{
-  if(reasonable_checkbox=='on'){
-    reasonable_checkbox='off':
-  }else{
-    reasonable_checkbox='on';
-  }
-  
-})
-
-RecentReleased.addEventListener('change',()=>{
-  if(recent_checkbox=='on'){
-    recent_checkbox='off':
-  }else{
-    recent_checkbox='on';
-  }
-  
-})
 
 
 
