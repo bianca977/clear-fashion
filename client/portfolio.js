@@ -20,7 +20,7 @@ const p90=document.querySelector('#p90');
 const p95=document.querySelector('#p95');
 
 const ReasonablePrice=document.querySelector("#reasonable-price");
-const RecentReleased=document.querySelector('#recently-released');
+//const RecentReleased=document.querySelector('#recently-released');
 const Favoritess=document.querySelector('#favorites'); 
 
 
@@ -71,9 +71,9 @@ const renderProducts = products => { //rend la liste des produits
     .map(product => {
       return `
       <div class="product" id=${product.uuid}>
-        <span>${product.brand}</span>
+        <span1>${product.brand}</span1>
         <a href="${product.link}">${product.name}</a>
-        <span>${product.price}</span>
+        <span1>${product.price}</span1>
       </div>
     `;
     })
@@ -155,6 +155,9 @@ const renderIndicators = pagination => { //nombre de produit affiché en fonctio
   p50.innerHTML=percentile(50)+ " euros";
   p90.innerHTML=percentile(90)+ " euros";
   p95.innerHTML=percentile(95)+ " euros";
+  if(reasonable_checkbox==='on'){
+    sortAffordable(products);
+  }
 
 };
 
@@ -171,6 +174,7 @@ const render = (products, pagination) => {
   renderIndicators(pagination);
   const brand=ListBrands(currentProducts);
   renderBrands(brand);
+  checkboxes(products);
 };
 
 function sortbrand(products,brand){
@@ -183,16 +187,20 @@ function sortbrand(products,brand){
   renderProducts(sortedproduct);
 }
 
+function checkboxes(products){
+  if(reasonable_checkbox==='on'){
+    sortAffordable(products);
+  }
+  else if(recent_checkbox==='on'){
+    sortNewReleased(products);
+  }
+}
+
 
 // function to select the way we want to sort the products before showing them to thz client 
 function Selection(currentProducts,selectedSorting){
-  if (selectedSorting == 'affordable'){
-    sortAffordable(currentProducts);
-  }
-  else if (selectedSorting == 'new-release'){
-    sortNewReleased(currentProducts);
-  }
-  else if (selectedSorting == 'price-asc'){
+
+  if (selectedSorting == 'price-asc'){
     sortByPriceAsc(currentProducts);
   }
   else if (selectedSorting == 'price-desc'){
@@ -307,6 +315,7 @@ function sortNewReleased(currentProducts){
     }
   }
   sortbrand(newReleasedProducts,selectBrand.value);
+
 }
 
 
@@ -346,23 +355,15 @@ selectSort.addEventListener('change',event => {
 
 ReasonablePrice.addEventListener('change',()=>{
   if(reasonable_checkbox=='on'){
-    reasonable_checkbox='off':
+    reasonable_checkbox='off';
   }else{
     reasonable_checkbox='on';
-  }
-  render(currentProducts,currentPagination):
-  
-})
-
-RecentReleased.addEventListener('change',()=>{
-  if(recent_checkbox=='on'){
-    recent_checkbox='off':
-  }else{
-    recent_checkbox='on';
   }
   render(currentProducts,currentPagination);
   
 })
+
+
 
 
 
