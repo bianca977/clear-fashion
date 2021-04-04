@@ -4,7 +4,7 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
-let reasonable_checkbox='off',
+let reasonable_checkbox='off';
 let recent_checkbox='off';
 
 
@@ -161,16 +161,17 @@ function percentile(p){
   var prod=currentProducts.sort((a,b)=>compare_price_asc(a,b));
   var i=Math.floor((p/100)*prod.length)
   return prod[i].price
-}
+};
 
 const render = (products, pagination) => {
  
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
+  checkboxes(products);
   const brand=ListBrands(currentProducts);
   renderBrands(brand);
-  checkboxes(products);
+  
 };
 
 function sortbrand(products,brand){
