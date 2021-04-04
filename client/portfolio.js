@@ -344,6 +344,23 @@ selectSort.addEventListener('change',event => {
   
 });
 
+ReasonablePrice.addEventListener('change',()=>{
+  if(reasonable_checkbox=='on'){
+    reasonable_checkbox='off':
+  }else{
+    reasonable_checkbox='on';
+  }
+  
+})
+
+RecentReleased.addEventListener('change',()=>{
+  if(recent_checkbox=='on'){
+    recent_checkbox='off':
+  }else{
+    recent_checkbox='on';
+  }
+  
+})
 
 
 
