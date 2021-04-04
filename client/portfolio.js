@@ -170,6 +170,7 @@ const render = (products, pagination) => {
   renderIndicators(pagination);
   const brand=ListBrands(currentProducts);
   renderBrands(brand);
+  checkboxes(products);
 };
 
 function sortbrand(products,brand){
@@ -358,7 +359,7 @@ ReasonablePrice.addEventListener('change',()=>{
   }else{
     reasonable_checkbox='on';
   }
-  checkboxes(currentProducts);
+  
 })
 
 RecentReleased.addEventListener('change',()=>{
@@ -367,7 +368,7 @@ RecentReleased.addEventListener('change',()=>{
   }else{
     recent_checkbox='on';
   }
-  checkboxes(currentProducts);
+  
 })
 
 
